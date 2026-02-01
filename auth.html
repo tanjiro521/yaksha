@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaksha Emerald | Secure Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@800;900&display=swap"
+        rel="stylesheet">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <style>
+        :root {
+            --bg-forest: #040705;
+            --card-deep: #0a0f0c;
+            --emerald-primary: #10b981;
+            /* Pure Emerald */
+            --emerald-glow: rgba(16, 185, 129, 0.4);
+            --text-white: #ecfdf5;
+            --text-dim: #6b7280;
+            --input-bg: #0d1410;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-forest);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .split-screen {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* --- Left Side: Emerald Visuals --- */
+        .visual-side {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #062016 0%, #040705 100%);
+            position: relative;
+        }
+
+        .yaksha-wrapper {
+            position: relative;
+            perspective: 1200px;
+        }
+
+        .yaksha-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 8.5rem;
+            font-weight: 900;
+            color: transparent;
+            background: linear-gradient(180deg, #ffffff 20%, var(--emerald-primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            z-index: 2;
+            filter: drop-shadow(0 0 30px var(--emerald-glow));
+            animation: emeraldFloat 6s ease-in-out infinite;
+        }
+
+        .yaksha-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            animation: emeraldShine 4s infinite linear;
+        }
+
+        .emerald-aura {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, var(--emerald-glow) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .branding-tagline {
+            margin-top: 2rem;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .branding-tagline p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .branding-tagline span {
+            color: var(--emerald-primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Right Side: Emerald Form --- */
+        .form-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: 1px solid #0f1a15;
+            background: rgba(10, 15, 12, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-container {
+            width: 420px;
+            padding: 3.5rem;
+            background: var(--card-deep);
+            border: 1px solid #111d17;
+            border-radius: 32px;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+        }
+
+        .tab-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 3rem;
+        }
+
+        .tab {
+            background: #0d1410;
+            border: none;
+            color: var(--text-dim);
+            padding: 10px 20px;
+            border-radius: 100px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: var(--emerald-primary);
+            color: #000;
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--text-dim);
+        }
+
+        .input-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: var(--emerald-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid #16241e;
+            padding: 16px;
+            border-radius: 16px;
+            color: white;
+            transition: 0.4s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--emerald-primary);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+        }
+
+        .emerald-btn {
+            width: 100%;
+            background: var(--emerald-primary);
+            border: none;
+            padding: 18px;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 1rem;
+        }
+
+        .emerald-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px var(--emerald-glow);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            .visual-side {
+                display: none;
+            }
+
+            .form-side {
+                flex: 1;
+                border: none;
+            }
+
+            .form-container {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes emeraldFloat {
+
+            0%,
+            100% {
+                transform: rotateY(-5deg) rotateX(5deg) translateY(0);
+            }
+
+            50% {
+                transform: rotateY(10deg) rotateX(-5deg) translateY(-20px);
+            }
+        }
+
+        @keyframes emeraldShine {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="split-screen">
+        <div class="visual-side">
+            <div class="yaksha-wrapper">
+                <h1 class="yaksha-text" data-text="Yaksha">Yaksha</h1>
+                <div class="emerald-aura"></div>
+                <div id="emerald-particles"></div>
+            </div>
+            <div class="branding-tagline">
+                <p>Digital Wealth Protected by Yaksha.</p>
+                <span>Vigilant. Secure. Organic.</span>
+            </div>
+        </div>
+
+        <div class="form-side">
+            <div class="form-container">
+                <div class="tab-group">
+                    <button class="tab active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+                    <button class="tab" id="tab-signup" onclick="switchTab('signup')">Register</button>
+                </div>
+
+                <div class="form-header" id="formHeader">
+                    <h2>Welcome Back</h2>
+                    <p>Enter your credentials to continue.</p>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label>Secure Email</label>
+                        <input type="email" id="loginEmail" placeholder="admin@yaksha.ai" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Access Key</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="emerald-btn">
+                        <span>Initialize Session</span> <span class="arrow">→</span>
+                    </button>
+                </form>
+
+                <!-- Registration Form -->
+                <form id="signupForm" class="hidden">
+                    <div class="input-group">
+                        <label>Full Identity</label>
+                        <input type="text" id="signupName" placeholder="John Doe" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Secure Email</label>
+                        <input type="email" id="signupEmail" placeholder="admin@yaksha.ai" required>
+                    </div>
+                    <div class="input-group">
+                        <label>New Access Key</label>
+                        <input type="password" id="signupPassword" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="emerald-btn">
+                        <span>Create Cipher</span> <span class="arrow">→</span>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Visual Effects ---
+            const particleBox = document.getElementById('emerald-particles');
+            const title = document.querySelector('.yaksha-text');
+
+            // 1. Emerald Fragment Generation
+            function createEmeraldFragment() {
+                const frag = document.createElement('div');
+                const size = Math.random() * 10 + 4;
+
+                frag.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: var(--emerald-primary);
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            opacity: ${Math.random() * 0.6};
+            pointer-events: none;
+            filter: blur(1px) drop-shadow(0 0 5px var(--emerald-primary));
+        `;
+
+                particleBox.appendChild(frag);
+
+                frag.animate([
+                    { transform: 'translateY(0) scale(1)', opacity: 0 },
+                    { transform: `translateY(-${Math.random() * 200}px) scale(1.5)`, opacity: 0.6 },
+                    { transform: `translateY(-300px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 3000 + Math.random() * 3000,
+                    iterations: Infinity
+                });
+            }
+
+            // Initialize 20 particles
+            for (let i = 0; i < 20; i++) {
+                createEmeraldFragment();
+            }
+
+            // 2. Dynamic Perspective on Mouse Move
+            document.addEventListener('mousemove', (e) => {
+                const xPos = (window.innerWidth / 2 - e.pageX) / 40;
+                const yPos = (window.innerHeight / 2 - e.pageY) / 40;
+                title.style.transform = `rotateY(${-xPos}deg) rotateX(${yPos}deg)`;
+            });
+        });
+
+        // --- Authentication Logic ---
+
+        function switchTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const tabLogin = document.getElementById('tab-login');
+            const tabSignup = document.getElementById('tab-signup');
+            const formHeader = document.getElementById('formHeader');
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                tabLogin.classList.add('active');
+                tabSignup.classList.remove('active');
+                formHeader.innerHTML = '<h2>Welcome Back</h2><p>Enter your credentials to continue.</p>';
+            } else {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                tabLogin.classList.remove('active');
+                tabSignup.classList.add('active');
+                formHeader.innerHTML = '<h2>Join the Vault</h2><p>Create your secured identity.</p>';
+            }
+        }
+
+        // Login Handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Verifying...';
+            btn.disabled = true;
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem('user_session', JSON.stringify({
+                        email: data.email,
+                        name: data.name,
+                        login_time: new Date().toISOString()
+                    }));
+                    window.location.href = '/dashboard';
+                } else {
+                    alert(data.error);
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Connection failed");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // Signup Handler
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Encrypting...';
+            btn.disabled = true;
+
+            const fullname = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            try {
+                const res = await fetch('/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullname, email, password })
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    alert("Identity Created! initializing...");
+                    switchTab('login');
+                    document.getElementById('loginEmail').value = email;
+                    document.getElementById('loginPassword').value = password;
+                } else {
+                    alert(data.error);
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Connection failed");
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

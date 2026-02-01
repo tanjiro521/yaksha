@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaksha | Guardian of Digital Wealth</title>
+    <meta name="description" content="Yaksha: Advanced AI Fraud Detection & Digital Guardian.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chat.css">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- Visualizer Libs -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Auth Check
+        const session = localStorage.getItem('user_session');
+        if (!session) {
+            window.location.href = '/';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <ion-icon name="shield-checkmark"></ion-icon>
+                <span>Yaksha</span>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <div class="nav-links">
+                <a href="/dashboard" class="active">Home</a>
+                <a href="#demo">Invoke</a>
+                <a href="web.html">Legal Disclaimer</a>
+            </div>
+            <button class="nav-cta" onclick="logout()">
+                Depart
+            </button>
+            <script>
+                function logout() {
+                    localStorage.removeItem('user_session');
+                    window.location.href = '/';
+                }
+            </script>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <div class="hero-content">
+                <div class="badge">
+                    <span class="pulse"></span> The Guardian is Awake
+                </div>
+                <h1>I Am <span class="gradient-text">Yaksha.</span> <br>Guardian of Your Digital Vault.</h1>
+                <p class="hero-subtitle">
+                    "I see what others miss. My ancient vigilance combined with modern vision protects your treasure
+                    from the shadows of deception."
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary"
+                        onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})">
+                        Invoke the Guardian <ion-icon name="eye"></ion-icon>
+                    </button>
+                    <a href="web.html" class="btn btn-secondary">
+                        View Legal Disclaimer
+                    </a>
+                    <button class="btn btn-danger" onclick="toggleChaosMode()">
+                        <ion-icon name="flash"></ion-icon> Chaos Mode
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="credit-card-bg">
+                    <div class="card-chip"></div>
+
+                    <div class="card-number">•••• •••• •••• 8892</div>
+
+                    <div class="card-footer">
+                        <div class="card-info">
+                            <div class="card-holder">Verified Member</div>
+                            <div class="brand-name">FRAUDGUARD ELITE</div>
+                        </div>
+                        <div class="brand-logo">VISA</div>
+                    </div>
+
+                    <div class="scan-line"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <h3>Vigilant</h3>
+                <p>Prototype level Accuracy</p>
+            </div>
+            <div class="stat-card">
+                <h3>
+                    Swift</h3>
+                <p>
+                    < 500ms Response</p>
+            </div>
+            <div class="stat-card">
+                <h3>Eternal</h3>
+                <p>24/7 Watch</p>
+            </div>
+        </section>
+
+        <!-- Main Interface (Demo) -->
+        <main id="demo" class="demo-section">
+            <div class="section-header">
+                <h2>Consult the Guardian</h2>
+                <p>Present a transaction. I will reveal its true nature.</p>
+            </div>
+
+            <div class="detection-interface">
+                <!-- Input Form -->
+                <form id="fraudForm" class="glass-panel form-panel">
+                    <h3><ion-icon name="search"></ion-icon> Transaction Details</h3>
+
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="amount">Treasure Amount ($)</label>
+                            <input type="number" id="amount" placeholder="e.g. 500.00" min="0" step="0.01" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="merchant">Origin (Merchant)</label>
+                            <select id="merchant" required>
+                                <option value="" disabled selected>Select Origin</option>
+                                <option value="retail">Retail / Shopping</option>
+                                <option value="travel">Travel & Hospitality</option>
+                                <option value="utilities">Utilities</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="grocery">Grocery / Food</option>
+                                <option value="online">Online Digital Goods</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="date">Date of Event</label>
+                            <input type="date" id="date" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="time">Time of Event</label>
+                            <input type="time" id="time" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="location">City / Location</label>
+                            <input type="text" id="location" placeholder="e.g. Kolkata, Mumbai, London" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="card-type">Key Type (Card)</label>
+                        <div class="card-options">
+                            <label class="radio-card">
+                                <input type="radio" name="cardType" value="visa" checked>
+                                <span>Visa</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="cardType" value="mastercard">
+                                <span>Mastercard</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="cardType" value="amex">
+                                <span>Amex</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary full-width" id="analyzeBtn">
+                        <span class="btn-text">Seek Yaksha's Insight</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+                </form>
+
+                <!-- Results Panel -->
+                <div id="resultPanel" class="glass-panel result-panel hidden">
+                    <div class="result-content">
+                        <div id="resultIcon" class="result-icon"></div>
+                        <h3 id="resultTitle">Judgment Delivered</h3>
+                        <p id="resultDesc">I have seen the path of this transaction.</p>
+
+                        <div class="score-meter">
+                            <div class="meter-label">
+                                <span>Threat Level</span>
+                                <span id="riskScoreValue">0%</span>
+                            </div>
+                            <div class="meter-track">
+                                <div id="riskFill" class="meter-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div class="result-details">
+                            <div class="detail-row">
+                                <span>Guardian Confidence:</span>
+                                <strong>99.1%</strong>
+                            </div>
+                            <div class="detail-row">
+                                <span>Vision ID:</span>
+                                <span class="mono">#YAK-88923</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-secondary full-width" onclick="resetForm()">Consult Again</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Live Visualizer Section -->
+        <section class="visualizer-section">
+            <div class="section-header">
+                <h2>The Global Vigil</h2>
+                <p>Real-time Behavioral Tracking & Risk Analysis</p>
+            </div>
+
+            <div class="viz-grid">
+                <!-- Map Container -->
+                <div class="glass-panel map-panel">
+                    <h3><ion-icon name="globe"></ion-icon> Live Geolocation Tracking</h3>
+                    <div id="map" style="height: 400px; width: 100%; border-radius: 12px; margin-top: 1rem;"></div>
+                </div>
+
+                <!-- Radar Chart Container -->
+                <div class="glass-panel chart-panel">
+                    <h3><ion-icon name="analytics"></ion-icon> Risk Radar Tribunal</h3>
+                    <div class="chart-container" style="position: relative; height:400px; width:100%">
+                        <canvas id="riskRadar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Chatbot Widget -->
+        <div class="chat-widget">
+            <!-- Chat Window -->
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-header">
+                    <div class="guardian-avatar">
+                        <ion-icon name="shield-half"></ion-icon>
+                    </div>
+                    <div class="chat-title">
+                        <h4>Yaksha</h4>
+                        <span>Guardian Online</span>
+                    </div>
+                    <button onclick="toggleChat()"
+                        style="background:none; border:none; color:#fff; margin-left:auto; cursor:pointer;">
+                        <ion-icon name="close-outline" size="large"></ion-icon>
+                    </button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Welcome Message -->
+                    <div class="message bot">
+                        Greetings. I am Yaksha. I stand guard over your vault. Ask me about fraud patterns, security
+                        solutions, or strange transactions.
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Consult the Guardian..."
+                        onkeypress="handleEnter(event)">
+                    <button onclick="sendMessage()">
+                        <ion-icon name="send"></ion-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- FAB -->
+            <button class="chat-fab" onclick="toggleChat()">
+                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+            </button>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 Yaksha Guardian System. | <a href="web.html">Legal Disclaimer</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>

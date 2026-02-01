@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Disclaimer | FraudGuard System</title>
+    <meta name="description" content="Legal disclaimer and terms of use for the Credit Card Fraud Detection ML System.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation (Matched with Dashboard) -->
+        <nav class="navbar">
+            <div class="logo">
+                <ion-icon name="shield-checkmark"></ion-icon>
+                <span>Yaksha</span>
+            </div>
+            <div class="nav-links">
+                <a href="/dashboard">Home</a>
+                <a href="/dashboard#demo">Invoke</a>
+                <a href="web.html" class="active">Legal Disclaimer</a>
+            </div>
+            <button class="nav-cta" onclick="logout()">
+                Depart
+            </button>
+            <script>
+                function logout() {
+                    localStorage.removeItem('user_session');
+                    window.location.href = '/';
+                }
+            </script>
+        </nav>
+
+        <div class="container">
+            <header style="text-align: center; margin-bottom: 3rem;">
+                <h1>Disclaimer</h1>
+                <p class="subtitle">Terms of Service & Legal Disclaimers</p>
+            </header>
+
+            <main class="glass-panel" style="padding: 3rem;">
+                <section id="general" style="margin-bottom: 2rem;">
+                    <h2>1. General Information</h2>
+                    <p style="color: var(--text-secondary);">The Fraud Detection service provided by Yaksha is intended
+                        <strong>solely for
+                            educational and demonstration purposes</strong>. The system identifies potential anomalies
+                        based on
+                        patterns, but it is an AI guardian, not a bank.
+                    </p>
+                </section>
+
+                <section id="financial-advice" style="margin-bottom: 2rem;">
+                    <h2>2. No Financial or Legal Advice</h2>
+                    <p style="color: var(--text-secondary);">The judgments delivered by Yaksha <strong>do not constitute
+                            professional financial or legal
+                            advice</strong>. Do not rely exclusively on the "Risk Score" for critical financial
+                        decisions.</p>
+                    <br>
+                    <p style="color: var(--text-secondary);">For actual threats, contact your <strong>financial
+                            institution (The Vault Keepers)</strong> immediately.</p>
+                </section>
+
+                <section id="limitations" style="margin-bottom: 2rem;">
+                    <h2>3. Accuracy & Vision Limitations</h2>
+                    <ul style="color: var(--text-secondary); padding-left: 20px;">
+                        <li>The Yaksha model is trained on a <strong>specific historical dataset</strong>.</li>
+                        <li>Predictions are <strong>probabilistic</strong> visions, not absolute truths.</li>
+                        <li>False alarms (False Positives) and hidden threats (False Negatives) may occur.</li>
+                    </ul>
+                </section>
+
+                <section id="responsibility" style="margin-bottom: 2rem;">
+                    <h2>4. User Responsibility</h2>
+                    <p style="color: var(--text-secondary);">By invoking Yaksha, you acknowledge that:</p>
+                    <ul style="color: var(--text-secondary); padding-left: 20px;">
+                        <li>You are responsible for interpreting the Guardian's signs.</li>
+                        <li>This system is <strong>assistive</strong>, designed to aid, not replace human judgment.</li>
+                    </ul>
+                </section>
+
+                <section id="privacy" style="margin-bottom: 2rem;">
+                    <h2>5. Data Privacy (The Secrecy of the Vault)</h2>
+                    <ul style="color: var(--text-secondary); padding-left: 20px;">
+                        <li>We do <strong>not store real credit card numbers</strong>.</li>
+                        <li>Input data is used <strong>only for the moment of analysis</strong>.</li>
+                        <li>Do not enter actual, live sensitive banking credentials into this educational prototype.
+                        </li>
+                    </ul>
+                </section>
+
+                <section id="liability">
+                    <h2>6. Limitation of Liability</h2>
+                    <p style="color: var(--text-secondary);">The creators of Yaksha shall not be held liable for any
+                        financial losses or disputes arising from the use of this system.</p>
+                    <br>
+                    <p style="color: var(--text-secondary);">The path you take is <strong>entirely at your own
+                            risk</strong>.</p>
+                </section>
+            </main>
+
+            <footer>
+                <p>&copy; 2026 Yaksha Guardian System. | <a href="/dashboard">Return to Home</a></p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

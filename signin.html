@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | FraudGuard System</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <ion-icon name="shield-checkmark"></ion-icon>
+                <span>FraudGuard</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#demo">Live Demo</a>
+                <a href="web.html">Legal Disclaimer</a>
+            </div>
+            <a href="signin.html" class="nav-cta active">
+                Sign In
+            </a>
+        </nav>
+
+        <div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 60vh;">
+            <div class="glass-panel form-panel" style="width: 100%; max-width: 450px;">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Member Login</h2>
+
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary full-width" style="margin-top: 1rem;" id="loginBtn">
+                        <span class="btn-text">Sign In</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                        Use your credentials to access the secure dashboard.
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; Risk analytics | <a href="index.html">Home</a></p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btn = document.getElementById('loginBtn');
+            const spinner = btn.querySelector('.spinner');
+            const text = btn.querySelector('.btn-text');
+
+            // Loading state
+            btn.disabled = true;
+            text.style.opacity = '0';
+            spinner.classList.remove('hidden');
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:5000/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Login successful! Information saved.');
+                    // Optionally redirect
+                    // window.location.href = 'index.html';
+                } else {
+                    alert('Login failed: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Connection error. Please try again.');
+            } finally {
+                // Reset state
+                btn.disabled = false;
+                text.style.opacity = '1';
+                spinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
