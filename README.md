@@ -16,4 +16,8 @@ Contributors:
 - `CONTRIBUTOR_1` (add actual GitHub username)
 - `CONTRIBUTOR_2` (add actual GitHub username)
 
+- `tanjiro521` (owner)
+- `sharmitachatterjee` (contributor)
+- `CONTRIBUTOR_2` (add actual GitHub username)
+
 If you'd like these contributors added as GitHub collaborators (so they can push), add them via the repository Settings -> Collaborators on GitHub, or tell me their GitHub usernames and I will add them to the `CONTRIBUTORS.md` file here.
