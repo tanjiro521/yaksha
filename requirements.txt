@@ -1,0 +1,11 @@
+flask
+gunicorn
+flask-cors
+joblib
+pandas
+numpy
+gspread
+google-auth
+google-auth-oauthlib
+scikit-learn
+requests
