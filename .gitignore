@@ -1,5 +1,5 @@
 __pycache__/
-*.pkl
+
 local_db.json
 .env
 .DS_Store

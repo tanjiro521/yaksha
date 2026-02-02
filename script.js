@@ -219,7 +219,7 @@ async function sendMessage() {
 
     // 3. Send to Backend
     try {
-        const response = await fetch('http://localhost:5000/chat', {
+        const response = await fetch('/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -326,7 +326,7 @@ function initVisuals() {
 async function analyzeTransaction(payload) {
     setLoading(true);
     try {
-        const response = await fetch('http://localhost:5000/predict', {
+        const response = await fetch('/predict', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
